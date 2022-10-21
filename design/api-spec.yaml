@@ -1,0 +1,623 @@
+openapi: 3.0.1
+info:
+  title: yets - Year-End Tax Settlement
+  description: The Marketing Service HTTP API
+  version: v1
+servers:
+  - url: /yets-api
+paths:
+  /api/v1/basicInfo:
+    get:
+      tags:
+        - basicInfo
+      operationId: "getBasicInfo"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BasicInfoDTO'
+                nullable: true
+    post:
+      tags:
+        - basicInfo
+      operationId: "insertBasicInfo"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/BasicInfoDTO'
+              nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BasicInfoDTO'
+                nullable: true
+  /api/v1/basicInfo/{name}/{jumin}:
+    parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+
+    get:
+      tags:
+        - basicInfo
+      operationId: "getBasicInfoByParam"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BasicInfoDTO'
+                nullable: true
+  /api/v1/basicInfo/calculate/{name}/{jumin}:
+    parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+
+    get:
+      tags:
+        - basicInfo
+      operationId: "calculateYets"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/yetsResultDTO'
+                nullable: true
+  /api/v1/humanDeduction/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - humanDeduction
+      operationId: "getHumanDeductionByParam"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/humanDeductionDTO'
+                nullable: true
+    post:
+      tags:
+        - humanDeduction
+      operationId: "insertHumanDeduction"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/humanDeductionDTO'
+              nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/humanDeductionDTO'
+                nullable: true
+  /api/v1/incomeDeduction/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - incomeDeduction
+      operationId: "getIncomeDeduction"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/incomeDeductionDTO'
+                nullable: true
+    post:
+      tags:
+        - incomeDeduction
+      operationId: "insertIncomeDeduction"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/incomeDeductionDTO'
+              nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/incomeDeductionDTO'
+                nullable: true
+  /api/v1/incomeDeductionAmount/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - incomeDeduction
+      operationId: "getIncomeDeductionAmount"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/yetsResultDTO'
+                nullable: true
+  /api/v1/incomeDeductionLimit/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - incomeDeduction
+      operationId: "getIncomeDeductionLimit"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/yetsResultDTO'
+                nullable: true
+  /api/v1/taxCredit/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - taxCredit
+      operationId: "getTaxCredit"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxCreditDTO'
+                nullable: true
+    post:
+      tags:
+        - taxCredit
+      operationId: "insertTaxCredit"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/taxCreditDTO'
+              nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/taxCreditDTO'
+                nullable: true
+  /api/v1/taxCreditAmount/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - taxCredit
+      operationId: "getTaxCreditAmount"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/yetsResultDTO'
+                nullable: true
+  /api/v1/taxCreditLimit/{jumin}:
+    parameters:
+      - name: jumin
+        in: path
+        description: jumin
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - taxCredit
+      operationId: "getTaxCreditLimit"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/yetsResultDTO'
+                nullable: true
+components:
+  schemas:
+    BasicInfoDTO:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        jumin:
+          type: string
+          nullable: true
+        totalIncome:
+          type: integer
+          format: int32
+          example: 1
+        paidTax:
+          type: integer
+          format: int32
+          example: 1
+        labourIncome:
+          type: integer
+          format: int32
+          example: 1
+        taxBase:
+          type: integer
+          format: int32
+          example: 1
+        calculatedTax:
+          type: integer
+          format: int32
+          example: 1
+        determinedTax:
+          type: integer
+          format: int32
+          example: 1
+        taxPayable:
+          type: integer
+          format: int32
+          example: 1
+    humanDeductionDTO:
+      type: object
+      properties:
+        jumin:
+          type: string
+          nullable: true
+        myself:
+          type: integer
+          format: int32
+          example: 1
+        spouseYn:
+          type: string
+        parents:
+          type: integer
+          format: int32
+          example: 1
+        children:
+          type: integer
+          format: int32
+          example: 1
+        exceptChildren:
+          type: integer
+          format: int32
+          example: 1
+        sibling:
+          type: integer
+          format: int32
+          example: 1
+        seniority:
+          type: integer
+          format: int32
+          example: 1
+        disabled:
+          type: integer
+          format: int32
+          example: 1
+        women:
+          type: integer
+          format: int32
+          example: 1
+    incomeDeductionDTO:
+      type: object
+      properties:
+        jumin:
+          type: string
+          nullable: true
+        nationalPension:
+          type: integer
+          format: int32
+          example: 1
+        healthInsurance:
+          type: integer
+          format: int32
+          example: 1
+        employmentInsurance:
+          type: integer
+          format: int32
+          example: 1
+        mortgageLoan:
+          type: integer
+          format: int32
+          example: 1
+        privatePensionSaving:
+          type: integer
+          format: int32
+          example: 1
+        housingSaving:
+          type: integer
+          format: int32
+          example: 1
+        creditCard:
+          type: integer
+          format: int32
+          example: 1
+        debitCard:
+          type: integer
+          format: int32
+          example: 1
+        cash:
+          type: integer
+          format: int32
+          example: 1
+        creditCardCulture:
+          type: integer
+          format: int32
+          example: 1
+        debitCardCulture:
+          type: integer
+          format: int32
+          example: 1
+        cashCulture:
+          type: integer
+          format: int32
+          example: 1
+        traditionalMarket:
+          type: integer
+          format: int32
+          example: 1
+        publicTransport:
+          type: integer
+          format: int32
+          example: 1
+    taxCreditDTO:
+      type: object
+      properties:
+        jumin:
+          type: string
+          nullable: true
+        childrenTaxCreditNumber:
+          type: integer
+          format: int32
+          example: 1
+        birthFirst:
+          type: integer
+          format: int32
+          example: 1
+        birthSecond:
+          type: integer
+          format: int32
+          example: 1
+        birthThirdUp:
+          type: integer
+          format: int32
+          example: 1
+        lifeInsurance:
+          type: integer
+          format: int32
+          example: 1
+        medicalInfertility:
+          type: integer
+          format: int32
+          example: 1
+        medicalPremie:
+          type: integer
+          format: int32
+          example: 1
+        medicalSpecial:
+          type: integer
+          format: int32
+          example: 1
+        medicalGeneral:
+          type: integer
+          format: int32
+          example: 1
+        actualMedicalExpenses:
+          type: integer
+          format: int32
+          example: 1
+    yetsResultDTO:
+      type: object
+      properties:
+        jumin:
+          type: string
+          nullable: true
+        basicHumanDeductionAmount:
+          type: integer
+          format: int32
+          example: 1
+        additionalHumanDeductionAmount:
+          type: integer
+          format: int32
+          example: 1
+        nationalPensionAmount:
+          type: integer
+          format: int32
+          example: 1
+        healthInsuranceAmount:
+          type: integer
+          format: int32
+          example: 1
+        employmentInsuranceAmount:
+          type: integer
+          format: int32
+          example: 1
+        mortgageLoanAmount:
+          type: integer
+          format: int32
+          example: 1
+        privatePensionSavingAmount:
+          type: integer
+          format: int32
+          example: 1
+        housingSavingAmount:
+          type: integer
+          nullable: true
+        creditCardEtcAmount:
+          type: integer
+          format: int32
+          example: 1
+        basicHumanDeductionLimit:
+          type: integer
+          format: int32
+          example: 1
+        additionalHumanDeductionLimit:
+          type: integer
+          format: int32
+          example: 1
+        nationalPensionLimit:
+          type: integer
+          format: int32
+          example: 1
+        healthInsuranceLimit:
+          type: integer
+          format: int32
+          example: 1
+        employmentInsuranceLimit:
+          type: integer
+          format: int32
+          example: 1
+        mortgageLoanLimit:
+          type: integer
+          format: int32
+          example: 1
+        privatePensionSavingLimit:
+          type: integer
+          format: int32
+          example: 1
+        housingSavingLimit:
+          type: integer
+          format: int32
+          example: 1
+        creditCardEtcLimit:
+          type: integer
+          format: int32
+          example: 1
+        labourIncomeTaxCreditAmount:
+          type: integer
+          format: int32
+          example: 1
+        childrenTaxCreditAmount:
+          type: integer
+          format: int32
+          example: 1
+        lifeInsuranceAmount:
+          type: integer
+          format: int32
+          example: 1
+        medicalExpensesAmount:
+          type: integer
+          format: int32
+          example: 1
+        standardTaxCredit:
+          type: integer
+          format: int32
+          example: 1
+        labourIncomeTaxCreditLimit:
+          type: integer
+          format: int32
+          example: 1
+        childrenTaxCreditLimit:
+          type: integer
+          format: int32
+          example: 1
+        lifeInsuranceLimit:
+          type: integer
+          format: int32
+          example: 1
+        medicalExpensesLimit:
+          type: integer
+          format: int32
+          example: 1

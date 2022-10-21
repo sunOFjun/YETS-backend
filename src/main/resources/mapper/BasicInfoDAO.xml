@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sj.yets.repository.mybatis.BasicInfoRepositoryDAO">
+
+    <resultMap type="com.sj.yets.repository.entity.BasicInfoEntity" id="basicInfoResult">
+        <result property="name" column="name"/>
+        <result property="jumin" column="jumin"/>
+        <result property="totalIncome" column="total_income"/>
+        <result property="paidTax" column="paid_tax"/>
+        <result property="labourIncome" column="labour_income"/>
+        <result property="taxBase" column="tax_base"/>
+        <result property="calculatedTax" column="calculated_tax"/>
+        <result property="determinedTax" column="determined_tax"/>
+        <result property="taxPayable" column="tax_payable"/>
+    </resultMap>
+    
+ 	<parameterMap type="com.sj.yets.repository.entity.BasicInfoEntity" id="basicInfoParam">
+ 		<parameter property="name" />
+        <parameter property="jumin" />
+        <parameter property="totalIncome" />
+        <parameter property="paidTax" />
+        <parameter property="labourIncome" />
+        <parameter property="taxBase" />
+        <parameter property="calculatedTax" />
+        <parameter property="determinedTax" />
+        <parameter property="taxPayable" />
+ 	</parameterMap>
+
+	<select id="getBasicInfo" resultType="BasicInfoEntity">
+        select * from PUBLIC.TAX_BASE_INFO
+        
+    </select>
+    
+    <select id="getBasicInfoByParam" resultType="BasicInfoEntity">
+        select * from PUBLIC.TAX_BASE_INFO
+        where name = #{name} and jumin = #{jumin}
+        
+    </select>
+
+    <insert id="insertBasicInfo">
+        insert into PUBLIC.TAX_BASE_INFO
+        (name, jumin, total_income, paid_tax)
+        values
+        (#{basicInfoDTO.name},
+        #{basicInfoDTO.jumin},
+        #{basicInfoDTO.totalIncome},
+        #{basicInfoDTO.paidTax})
+
+    </insert>
+
+    <update id="updateBasicInfo">
+        update PUBLIC.TAX_BASE_INFO
+        set labour_income = #{basicInfoDTO.labourIncome}
+          , tax_base = #{basicInfoDTO.taxBase}
+          , calculated_tax = #{basicInfoDTO.calculatedTax}
+          , determined_tax = #{basicInfoDTO.determinedTax}
+          , tax_payable = #{basicInfoDTO.taxPayable}
+        where jumin = #{jumin}
+
+    </update>
+
+    <delete id="deleteBasicInfo">
+        delete from PUBLIC.TAX_BASE_INFO
+        where jumin = #{basicInfoDTO.jumin}
+
+    </delete>
+    <select id="getTaxRateInfo" resultType="BasicInfoEntity">
+        select * from PUBLIC.TAX_RATE_INFO
+        where CODE = #{code}
+
+
+    </select>
+
+
+
+
+
+
+
+
+</mapper>

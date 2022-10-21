@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sj.yets.repository.mybatis.IncomeDeductionRepositoryDAO">
+
+
+    <select id="getIncomeDeduction" resultType="IncomeDeductionEntity">
+        select * from PUBLIC.INCOME_DEDUCTION
+        where jumin = #{jumin}
+
+    </select>
+
+    <select id="getIncomeDeductionAmount" resultType="YetsResultEntity">
+        select * from PUBLIC.INCOME_DEDUCTION_AMOUNT
+        where jumin = #{jumin}
+
+    </select>
+
+    <select id="getIncomeDeductionLimit" resultType="YetsResultEntity">
+        select * from PUBLIC.INCOME_DEDUCTION_LIMIT
+        where jumin = #{jumin}
+
+    </select>
+
+    <delete id="deleteIncomeDeduction">
+        delete from PUBLIC.INCOME_DEDUCTION
+        where jumin = #{jumin}
+
+    </delete>
+
+    <insert id="insertIncomeDeduction">
+        INSERT INTO PUBLIC.INCOME_DEDUCTION
+        VALUES (
+        #{jumin},
+        #{incomeDeductionDTO.nationalPension},
+        #{incomeDeductionDTO.healthInsurance},
+        #{incomeDeductionDTO.employmentInsurance},
+        #{incomeDeductionDTO.mortgageLoan},
+        #{incomeDeductionDTO.privatePensionSaving},
+        #{incomeDeductionDTO.housingSaving},
+        #{incomeDeductionDTO.creditCard},
+        #{incomeDeductionDTO.debitCard},
+        #{incomeDeductionDTO.cash},
+        #{incomeDeductionDTO.creditCardCulture},
+        #{incomeDeductionDTO.debitCardCulture},
+        #{incomeDeductionDTO.cashCulture},
+        #{incomeDeductionDTO.traditionalMarket},
+        #{incomeDeductionDTO.publicTransport}
+        )
+
+    </insert>
+
+    <insert id="insertIncomeDeductionAmount">
+        INSERT INTO public.income_deduction_amount(
+        jumin, basic_human_deduction_amount, additional_human_deduction_amount, national_pension_amount, health_insurance_amount, employment_insurance_amount, mortgage_loan_amount, private_pension_saving_amount, housing_saving_amount, credit_card_etc_amount)
+        VALUES (
+        #{jumin},
+        #{yetsResultDTO.basicHumanDeductionAmount},
+        #{yetsResultDTO.additionalHumanDeductionAmount},
+        #{yetsResultDTO.nationalPensionAmount},
+        #{yetsResultDTO.healthInsuranceAmount},
+        #{yetsResultDTO.employmentInsuranceAmount},
+        #{yetsResultDTO.mortgageLoanAmount},
+        #{yetsResultDTO.privatePensionSavingAmount},
+        #{yetsResultDTO.housingSavingAmount},
+        #{yetsResultDTO.creditCardEtcAmount}
+        )
+    </insert>
+
+    <delete id="deleteIncomeDeductionAmount">
+        DELETE FROM public.income_deduction_amount
+        WHERE JUMIN = #{jumin}
+    </delete>
+
+    <insert id="insertIncomeDeductionLimit">
+        INSERT INTO public.income_deduction_limit(
+        jumin, BASIC_HUMAN_DEDUCTION_LIMIT, ADDITIONAL_HUMAN_DEDUCTION_LIMIT, NATIONAL_PENSION_LIMIT, HEALTH_INSURANCE_LIMIT, EMPLOYMENT_INSURANCE_LIMIT, MORTGAGE_LOAN_LIMIT, PRIVATE_PENSION_SAVING_LIMIT, HOUSING_SAVING_LIMIT, CREDIT_CARD_ETC_LIMIT)
+        VALUES (
+        #{jumin},
+        #{yetsResultDTO.basicHumanDeductionLimit},
+        #{yetsResultDTO.additionalHumanDeductionLimit},
+        #{yetsResultDTO.nationalPensionLimit},
+        #{yetsResultDTO.healthInsuranceLimit},
+        #{yetsResultDTO.employmentInsuranceLimit},
+        #{yetsResultDTO.mortgageLoanLimit},
+        #{yetsResultDTO.privatePensionSavingLimit},
+        #{yetsResultDTO.housingSavingLimit},
+        #{yetsResultDTO.creditCardEtcLimit}
+        )
+    </insert>
+
+    <delete id="deleteIncomeDeductionLimit">
+        DELETE FROM public.income_deduction_limit
+        WHERE JUMIN = #{jumin}
+    </delete>
+
+
+</mapper>
