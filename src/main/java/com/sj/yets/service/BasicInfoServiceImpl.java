@@ -431,9 +431,10 @@ public class BasicInfoServiceImpl implements BasicInfoService{
 
 		int basicChildrenTaxCredit = 0;
 		int additionalChildrenTaxCredit = 0;
+		System.out.println("childrenNumber : " + childrenNumber);
 		if(childrenNumber <= 2) {
 			basicChildrenTaxCredit = 150000 * childrenNumber;
-		} {
+		}else{
 			basicChildrenTaxCredit = 300000 + 300000 * (childrenNumber - 2);
 		}
 
