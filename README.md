@@ -1,3 +1,9 @@
+# IDE 및 빌드환경
+IntelliJ communuty ver
+jdk1.8 gradle 빌드
+
+
+
 
 # OpenAPI generated API stub
 
